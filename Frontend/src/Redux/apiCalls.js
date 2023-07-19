@@ -1,12 +1,12 @@
+import { publicRequest } from "../requestMethod";
 import {
   loginFailure,
   loginStart,
   loginSuccess,
+  logoutFailure,
   logoutStart,
   logoutSuccess,
-  logoutFailure,
 } from "./userRedux";
-import { publicRequest } from "../requestMethod";
 
 export const login = (user) => {
   return async (dispatch) => {

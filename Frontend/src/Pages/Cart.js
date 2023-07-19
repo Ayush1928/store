@@ -1,12 +1,10 @@
-import { TOKEN } from "../requestMethod";
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
 import { Add, Remove } from "@mui/icons-material";
-import Context from "../Components/Context";
+import axios from "axios";
+import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Footer from "../Components/Footer";
+import Navbar from "../Components/Navbar";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -34,7 +32,7 @@ const Cart = () => {
       console.error(error);
     }
   };
-  const handleQuantity = (action, itemId) => {
+  const handleQuantity = (action, itemId) => {// eslint-disable-next-line
     const updatedProducts = cart.products.map((item) => {
       if (item._id === itemId) {
         if (action === "inc") {
@@ -55,7 +53,7 @@ const Cart = () => {
           {cart.products.map((item) => (
             <div className="cart-product-item" key={item._id}>
               <div className="cart-product-image">
-                <img src={item.img} />
+                <img src={item.img} alt="Product"/>
               </div>
               <div className="cart-product-info">
                 <h3>{item.title}</h3>

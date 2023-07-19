@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import React, { useContext } from "react";
 import "../App.css";
 import Context from "./Context";
 import { CarouselData } from "./SampleData";

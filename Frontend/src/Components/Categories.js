@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CategoryData2 } from "./SampleData";
 import "../App.css";
+import { CategoryData2 } from "./SampleData";
 const Categories = () => {
   return (
     <div className="categories">

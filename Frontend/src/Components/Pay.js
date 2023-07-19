@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
 const Pay = () => {
   const [stripeToken, setStripeToken] = useState(null);

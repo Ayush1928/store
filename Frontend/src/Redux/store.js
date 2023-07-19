@@ -1,18 +1,12 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
-  persistStore,
   persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
+  persistStore
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import thunk from "redux-thunk";
 import cartReducer from "./cartRedux";
 import userReducer from "./userRedux";
-import thunk from "redux-thunk";
 const persistConfig = {
   key: "root",
   version: 1,

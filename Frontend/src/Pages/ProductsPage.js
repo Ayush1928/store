@@ -1,13 +1,13 @@
-import "../App.css";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import React, { useContext, useState } from "react";
+import { useLocation } from "react-router-dom";
+import "../App.css";
+import Context from "../Components/Context";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import Newsletter from "../Components/Newsletter";
-import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
-import Context from "../Components/Context";
 import ProductsPageItem from "../Components/ProductsPageItem";
-import { useLocation } from "react-router-dom";
 
 const ProductsPage = () => {
   const [sort, setSort] = useState(null);

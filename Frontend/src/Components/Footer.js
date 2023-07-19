@@ -1,12 +1,12 @@
-import React from "react";
-import "../App.css";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import React from "react";
+import "../App.css";
 const Footer = () => {
   return (
     <div className="footer-container">
@@ -58,7 +58,7 @@ const Footer = () => {
       </div>
       <div className="footer-end">
         <hr/>
-        <h4>Developed by <b>Ayush </b>| <b><a href="https://www.linkedin.com/in/ayush-bansal-559914214" target="_blank">LinkedIn </a></b>| <b><a href="https://github.com/Ayush1928" target="_blank">Github</a></b></h4>
+        <h4>Developed by <b>Ayush </b>| <b><a href="https://www.linkedin.com/in/ayush-bansal-559914214" target="_blank" rel="noreferrer">LinkedIn </a></b>| <b><a href="https://github.com/Ayush1928" target="_blank" rel="noreferrer">Github</a></b></h4>
       </div>
     </div>
   );

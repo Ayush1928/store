@@ -1,13 +1,10 @@
-import { ProductionQuantityLimitsRounded, Search } from "@mui/icons-material";
-import React, { useState } from "react";
-import styled from "styled-components";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Badge } from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { login, logout } from "../Redux/apiCalls";
+import styled from "styled-components";
+import { logout } from "../Redux/apiCalls";
 
 const Container = styled.div`
   height: 8vh;
@@ -27,10 +24,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-`;
-
-const SearchIcon = styled(Search)`
-  font-size: 1.8rem;
 `;
 
 const Div1 = styled.div`
@@ -171,7 +164,6 @@ const Navbar = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logout(currentUser));
   };

@@ -1,7 +1,7 @@
-import React, { useEffect, useContext } from "react";
-import Context from "../Components/Context";
 import axios from "axios";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Context from "../Components/Context";
 const ProductsPageItem = ({ cat, sort }) => {
   const context = useContext(Context);
   const {
@@ -24,6 +24,7 @@ const ProductsPageItem = ({ cat, sort }) => {
       } catch (err) {}
     };
     getProducts();
+    // eslint-disable-next-line
   }, [cat]);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const ProductsPageItem = ({ cat, sort }) => {
             item[key].includes(value)
           )
         )
-      );
+      );// eslint-disable-next-line
   }, [cat, filters, products]);
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const ProductsPageItem = ({ cat, sort }) => {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => b.price - a.price)
       );
-    }
+    }// eslint-disable-next-line
   }, [sort]);
   return (
     <>
