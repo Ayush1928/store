@@ -16,8 +16,8 @@ router.post("/register", async (req, res) => {
   });
 
   try {
-    const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
+    const { password, ...others } = await newUser.save();
+    res.status(201).json({ others });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -45,6 +45,18 @@ router.post("/login", async (req, res) => {
     );
     const { password, ...others } = user._doc;
     res.status(200).json({ ...others, accessToken });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//LOGOUT
+router.post("/logout", async (req, res) => {
+  try {
+    // res.clearCookie(req.body.accessToken);
+    // req.session.destroy();
+    console.log("logout")
+    res.status(200).json({ message: "Logout successful" });
   } catch (err) {
     res.status(500).json(err);
   }

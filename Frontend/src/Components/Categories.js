@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CategoryData1, CategoryData2 } from "./SampleData";
+import { CategoryData2 } from "./SampleData";
 import "../App.css";
 const Categories = () => {
   return (
@@ -11,6 +11,7 @@ const Categories = () => {
         <div className="cat-box">
           {CategoryData2.map((item) => (
             <Link
+            className="cat-link"
               to={`/products/${item.cat}`}
               key={item.id}
               style={{ textDecoration: "none" }}

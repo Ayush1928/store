@@ -15,7 +15,7 @@ export const CarouselData = [
     id: 3,
     img: "https://images.pexels.com/photos/267320/pexels-photo-267320.jpeg?auto=compress&cs=tinysrgb&w=600",
     title: "Footwear",
-    desc: "STARTING FROM RS.200",
+    desc: "STARTING FROM Rs.200",
   },
 ];
 export const CategoryData1 = [

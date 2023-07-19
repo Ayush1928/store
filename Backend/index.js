@@ -8,7 +8,7 @@ const userRouter = require("./Routes/user");
 const productRouter = require("./Routes/product");
 const orderRouter = require("./Routes/order");
 const stripeRouter = require("./Routes/stripe");
-// const stripe = require('stripe')(process.env.STRIPE_KEY);
+const instamojoRouter = require("./Routes/instamojo");
 
 const cors = require("cors");
 dotenv.config();
@@ -20,13 +20,17 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-app.use(cors());
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+    })
+  )
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/order", orderRouter);
-app.use("/api/checkout", stripeRouter);
+app.use("/api/checkout", instamojoRouter);
 app.listen(port, () => {
   console.log(`Backend Server is running on port : ${port}`);
 });

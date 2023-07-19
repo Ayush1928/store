@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Footer from "../Components/Footer";
+import Navbar from "../Components/Navbar";
 import { login } from "../Redux/apiCalls";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isFetching, error } = useSelector(state=>state.user);
+  const navigate = useNavigate();
+  const { isFetching, error } = useSelector((state) => state.user);
   const handleLogin = (e) => {
     e.preventDefault();
-    login(dispatch, { email, password });
+    dispatch(login({ email, password }));
   };
+
   return (
     <>
       <Navbar />

@@ -1,3 +1,5 @@
+import { TOKEN } from "../requestMethod";
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
@@ -5,30 +7,45 @@ import Footer from "../Components/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import Context from "../Components/Context";
 import { useSelector } from "react-redux";
-import StripeCheckout from "react-stripe-checkout";
-import { userRequest } from "../requestMethod";
+
 const Cart = () => {
-  const [stripeToken, setStripeToken] = useState(null);
-  const context = useContext(Context);
-  const { handleQuantity, quantity } = context;
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
-  const onToken = (token) => {
-    setStripeToken(token);
+  const makeRequest = async () => {
+    try {
+      console.log("makeRequest Clicked");
+      const paymentData = {
+        purpose: "Payment",
+        amount: cart.total,
+      };
+      const { response } = await axios.post(
+        "http://localhost:5000/api/checkout/payment",
+        paymentData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer {test_a005b58f79b9e00ca8ace4d1287}",
+          },
+        }
+      );
+      navigate(response.paymentUrl);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        const res = await userRequest.post("/checkout/payment", {
-          tokenId: stripeToken.id,
-          amount: cart.total * 100,
-        });
-        navigate("/success", { data: res.data });
-      } catch {}
-    };
-
-    stripeToken && makeRequest();
-  }, [stripeToken, cart.total, navigate]);
+  const handleQuantity = (action, itemId) => {
+    const updatedProducts = cart.products.map((item) => {
+      if (item._id === itemId) {
+        if (action === "inc") {
+          return { ...item, quantity: item.quantity + 1 };
+        } else if (action === "dec" && item.quantity > 1) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+      }
+      return item;
+    });
+  };
   return (
     <>
       <Navbar />
@@ -82,19 +99,11 @@ const Cart = () => {
                 <b>₹{cart.total + 50}</b>
               </p>
             </div>
-            <StripeCheckout
-              name="Store"
-              billingAddress
-              shippingAddress
-              description={`Your total is ₹${cart.total + 50}`}
-              amount={cart.total * 100}
-              token={onToken}
-              stripeKey={process.env.STRIPE_SECRET_KEY_MY}
-            >
-              <button className="place-order" type="button">
+            <form onSubmit={makeRequest}>
+              <button className="place-order" type="submit">
                 Place Order
               </button>
-            </StripeCheckout>
+            </form>
           </div>
         </div>
       </div>

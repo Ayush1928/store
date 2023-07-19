@@ -51,12 +51,11 @@ const ProductsPageItem = ({ cat, sort }) => {
         [...prev].sort((a, b) => b.price - a.price)
       );
     }
-    console.log(sort);
   }, [sort]);
   return (
     <>
       {filteredProducts.map((item) => (
-        <Link
+        <Link className="product-link"
           to={`/product/${item._id}`}
           key={item._id}
           style={{ display: "flex", color: "black" }}
