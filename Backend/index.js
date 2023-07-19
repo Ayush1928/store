@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 const dotenv = require("dotenv");
 const authRoute = require("./Routes/auth");
 const userRouter = require("./Routes/user");
@@ -22,9 +22,10 @@ mongoose
   });
   app.use(
     cors({
-      origin: "http://localhost:3000",
+      origin: process.env.CORS_ORIGIN || "http://localhost:3000",
     })
-  )
+  );
+  
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRouter);
