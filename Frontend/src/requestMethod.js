@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = "http://localhost:5000/api/";
 let TOKEN = null;
 
 const persistedData = JSON.parse(localStorage.getItem("persist:root"));

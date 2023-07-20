@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Carousel from "../Components/Carousel";
 import Categories from "../Components/Categories";
 import Footer from "../Components/Footer";
 import Navbar from '../Components/Navbar';
 import Newletter from "../Components/Newsletter";
 import Products from "../Components/Products";
+
 const Home = () => {
+  const user = useSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/register");
+    }
+  }, [user]);
+
   return (
     <div>
       <Navbar/>
@@ -15,7 +27,7 @@ const Home = () => {
       <Newletter/>
       <Footer/>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

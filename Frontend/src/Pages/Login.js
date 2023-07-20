@@ -17,7 +17,6 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
       <div className="register-container">
         <div className="register-box" style={{ height: "50vh", width: "30vw" }}>
           <h1>Login</h1>
@@ -38,7 +37,7 @@ const Login = () => {
             type="button"
             disabled={isFetching}
             onClick={handleLogin}
-          >
+          > 
             Login
           </button>
         </div>

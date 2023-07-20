@@ -2,9 +2,10 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Badge } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logout } from "../Redux/apiCalls";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Container = styled.div`
   height: 8vh;
@@ -154,6 +155,7 @@ const StoreLink = styled(Link)`
 const Div2Item = styled.div`
   font-size: 1rem;
   margin-right: 1vw;
+  margin-left: 2vw;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -163,9 +165,11 @@ const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
   const currentUser = useSelector((state) => state.user.currentUser);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logout(currentUser));
+    navigate("/register");
   };
 
   const handleMenuToggle = () => {
@@ -179,24 +183,8 @@ const Navbar = () => {
           <HamburgerIcon />
         </HamburgerButton>
         <Div1>
-          <StoreLink to="/">Store</StoreLink>
+          <StoreLink to="/">ClothesCorner</StoreLink>
           <Div2>
-            <Div2Item>
-              <Link
-                to="/register"
-                style={{ color: "black", textDecoration: "none" }}
-              >
-                Register
-              </Link>
-            </Div2Item>
-            <Div2Item>
-              <Link
-                to="/login"
-                style={{ color: "black", textDecoration: "none" }}
-              >
-                Login
-              </Link>
-            </Div2Item>
             <Link to="/cart">
               <CartButton>
                 <Badge
@@ -210,6 +198,7 @@ const Navbar = () => {
                 </Badge>
               </CartButton>
             </Link>
+            <Div2Item><LogoutIcon onClick={handleLogout}/></Div2Item>
           </Div2>
         </Div1>
       </Wrapper>
@@ -219,10 +208,10 @@ const Navbar = () => {
         </CloseButton>
         <MenuContent>
           <MenuItem to="/">Home</MenuItem>
-          <MenuItem to="/products/men">Products</MenuItem>
+          <MenuItem to="/products/men">Men</MenuItem>
+          <MenuItem to="/products/women">Women</MenuItem>
+          <MenuItem to="/products/kids">Kids</MenuItem>
           <MenuItem to="/cart">Cart</MenuItem>
-          <MenuItem to="/login">Login</MenuItem>
-          <MenuItem to="/register">Register</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </MenuContent>
       </HamburgerMenu>

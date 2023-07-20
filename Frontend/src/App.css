@@ -474,12 +474,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 85vh;
+  height: 90vh;
 }
 
 .register-box {
-  width: 30vw;
-  height: 60vh;
+  min-width: 30vw;
+  min-height: 60vh;
   background-color: white;
   opacity: 70%;
   border-radius: 3%;
@@ -488,10 +488,11 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  text-align: center;
 }
 
 .register-box h1 {
-  font-size: 2.75rem;
+  font-size: 2.5rem;
   font-weight: 500;
 }
 
@@ -501,18 +502,21 @@
   font-size: larger;
   border: 1px solid black;
   padding: 0 1vw;
-  height: 12%;
+  min-height: 8vh;
+  margin-top: 2vh;
   width: 80%;
 }
 
 .register-checkbox {
   display: flex;
   justify-content: flex-start;
-  width: 85%;
+  align-items: center;
+  height: 8vh;
 }
 
+
 .register-button {
-  height: 12%;
+  min-height: 8vh;
   width: 85%;
   font-size: larger;
   cursor: pointer;
@@ -978,11 +982,37 @@
     justify-content: center;
     padding: 10px;
   }
-  .cart-summary h1{
-    text-align:center ;
+
+  .cart-summary h1 {
+    text-align: center;
     margin-top: 0;
   }
-  .place-order{
+
+  .place-order {
     height: auto;
+  }
+
+  .register-container {
+    padding: 10%;
+  }
+
+  .register-box {
+    min-width: 80%;
+    min-height: 80%;
+    text-align: center;
+    margin: 20px;
+  }
+
+  .register-box h1{
+    font-size: 1.75rem;
+  }
+
+  .register-box input {
+    margin-top: 15px;
+  }
+
+  .register-checkbox {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 }
