@@ -16,7 +16,7 @@ const Home = () => {
     if (!user) {
       navigate("/register");
     }
-  }, [user]);
+  }, [user,navigate]);
 
   return (
     <div>

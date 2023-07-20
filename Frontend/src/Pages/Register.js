@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import Footer from "../Components/Footer";
 import { publicRequest } from "../requestMethod";
 
 const Register = () => {

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../Components/Footer";
-import Navbar from "../Components/Navbar";
 import { login } from "../Redux/apiCalls";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   const { isFetching, error } = useSelector((state) => state.user);
   const handleLogin = (e) => {
     e.preventDefault();
