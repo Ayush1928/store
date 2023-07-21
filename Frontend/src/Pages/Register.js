@@ -36,12 +36,14 @@ const Register = () => {
           <input
             className="register-name"
             placeholder="Your Name"
+            id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
             className="register-email"
             placeholder="Your Email"
+            id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -49,6 +51,7 @@ const Register = () => {
             className="register-password"
             placeholder="Password"
             type="password"
+            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -57,6 +60,7 @@ const Register = () => {
               className="checkbox-box"
               type="checkbox"
               name="checkbox"
+              id="check-box"
               style={{
                 border: "1px solid black",
                 height: "20px",
@@ -68,7 +72,7 @@ const Register = () => {
                 marginTop: "0",
               }}
             />
-            <label htmlFor="checkbox">I agree to terms & conditions</label>
+            <label htmlFor="check-box">I agree to terms & conditions</label>
           </div>
           <button
             className="register-button"
