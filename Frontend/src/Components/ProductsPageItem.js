@@ -24,8 +24,7 @@ const ProductsPageItem = ({ cat, sort }) => {
       } catch (err) {}
     };
     getProducts();
-    // eslint-disable-next-line
-  }, [cat]);
+  }, [cat,setProducts]);
 
   useEffect(() => {
     cat &&
@@ -35,8 +34,8 @@ const ProductsPageItem = ({ cat, sort }) => {
             item[key].includes(value)
           )
         )
-      );// eslint-disable-next-line
-  }, [cat, filters, products]);
+      );
+  }, [cat, filters, products,setFilteredProducts]);
 
   useEffect(() => {
     if (sort === "arrival") {
@@ -51,8 +50,8 @@ const ProductsPageItem = ({ cat, sort }) => {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => b.price - a.price)
       );
-    }// eslint-disable-next-line
-  }, [sort]);
+    }
+  }, [sort,setFilteredProducts]);
   return (
     <>
       {filteredProducts.map((item) => (

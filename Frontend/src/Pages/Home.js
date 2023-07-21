@@ -9,14 +9,14 @@ import Newletter from "../Components/Newsletter";
 import Products from "../Components/Products";
 
 const Home = () => {
-  const user = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!currentUser) {
       navigate("/register");
     }
-  }, [user,navigate]);
+  }, [currentUser,navigate]);
 
   return (
     <div>

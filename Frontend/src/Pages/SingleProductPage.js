@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import { Add, Remove } from "@mui/icons-material";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import React, { useContext, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
+import Context from "../Components/Context";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import { publicRequest } from "../requestMethod";
-import { Add, Remove } from "@mui/icons-material";
-import Context from "../Components/Context";
 import { addProduct } from "../Redux/cartRedux";
-import { useDispatch } from "react-redux";
+import { publicRequest } from "../requestMethod";
 
 const SingleProductPage = () => {
   const location = useLocation();

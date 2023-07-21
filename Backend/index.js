@@ -7,7 +7,7 @@ const authRoute = require("./Routes/auth");
 const userRouter = require("./Routes/user");
 const productRouter = require("./Routes/product");
 const orderRouter = require("./Routes/order");
-const stripeRouter = require("./Routes/stripe");
+// const stripeRouter = require("./Routes/stripe");
 const instamojoRouter = require("./Routes/instamojo");
 
 const cors = require("cors");

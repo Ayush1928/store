@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
+import { login } from "../Redux/apiCalls";
 import { publicRequest } from "../requestMethod";
 
 const Register = () => {
@@ -8,6 +10,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRegister = async () => {
     try {
@@ -16,11 +19,12 @@ const Register = () => {
         email,
         password,
       });
-      if(response.status === 201){
+      if (response.status === 201) {
+        dispatch(login({ email, password }));
         navigate("/");
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -59,17 +63,24 @@ const Register = () => {
                 width: "20px",
                 marginRight: "1vw",
                 cursor: "pointer",
-                display:"flex",
-                alignItems:"center",
-                marginTop:"0"
+                display: "flex",
+                alignItems: "center",
+                marginTop: "0",
               }}
             />
             <label htmlFor="checkbox">I agree to terms & conditions</label>
           </div>
-          <button className="register-button" type="button" onClick={handleRegister}>
+          <button
+            className="register-button"
+            type="button"
+            onClick={handleRegister}
+          >
             Sign Up
-          </button><br/>
-          <p>Already have an account ? <Link to="/login">Login</Link></p>
+          </button>
+          <br />
+          <p>
+            Already have an account ? <Link to="/login">Login</Link>
+          </p>
         </div>
       </div>
       <Footer />
