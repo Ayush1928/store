@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const app = express();
 const port = process.env.PORT || 5000;
 const dotenv = require("dotenv");
-const authRoute = require("./Routes/auth");
-const userRouter = require("./Routes/user");
-const productRouter = require("./Routes/product");
-const orderRouter = require("./Routes/order");
-// const stripeRouter = require("./Routes/stripe");
-const instamojoRouter = require("./Routes/instamojo");
+const authRoute = require("../Routes/auth");
+const userRouter = require("../Routes/user");
+const productRouter = require("../Routes/product");
+const orderRouter = require("../Routes/order");
+// const stripeRouter = require("../Routes/stripe");
+const instamojoRouter = require("../Routes/instamojo");
 const cors = require("cors");
 dotenv.config();
 mongoose
