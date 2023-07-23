@@ -9,7 +9,6 @@ const productRouter = require("./Routes/product");
 const orderRouter = require("./Routes/order");
 // const stripeRouter = require("./Routes/stripe");
 const instamojoRouter = require("./Routes/instamojo");
-
 const cors = require("cors");
 dotenv.config();
 mongoose
@@ -20,12 +19,12 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-  app.use(
-    cors({
-      origin: process.env.CORS_ORIGIN || "https://clothescorner.netlify.app",
-    })
-  );
-  
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN || "https://clothescorner.netlify.app",
+  })
+);
+
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRouter);
