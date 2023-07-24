@@ -684,8 +684,10 @@
 
 @media (max-width: 767px) {
   .carousel {
-    height: 50vh;
+    height: auto;
     width: 100%;
+    padding-top: 9vh;
+    align-items: center;
   }
 
   .carousel-info {
@@ -697,7 +699,6 @@
     font-size: 1.4rem;
     border-left: 4px solid black;
   }
-
 
   .larrow {
     margin-left: 5px;
