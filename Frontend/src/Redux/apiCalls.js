@@ -7,18 +7,37 @@ import {
   logoutStart,
   logoutSuccess,
 } from "./userRedux";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const login = (user) => {
   return async (dispatch) => {
     dispatch(loginStart());
+
+    const timeoutDuration = 10000;
+    let isTimeout = false;
+
+    const handleTimeout = () => {
+      if (!isTimeout) {
+        isTimeout = true;
+        dispatch(loginFailure());
+      }
+    };
+
+    const timeoutId = setTimeout(handleTimeout, timeoutDuration);
+
     try {
       const res = await publicRequest.post("/auth/login", user);
-      dispatch(loginSuccess(res.data));
+      if (!isTimeout) {
+        clearTimeout(timeoutId);
+        dispatch(loginSuccess(res.data));
+      }
       const navigate = useNavigate();
-      navigate("/")
+      navigate("/");
     } catch (err) {
-      dispatch(loginFailure());
+      if (!isTimeout) {
+        clearTimeout(timeoutId);
+        dispatch(loginFailure());
+      }
     }
   };
 };
@@ -28,7 +47,8 @@ export const logout = (user) => {
     dispatch(logoutStart());
     try {
       await publicRequest.post("/auth/logout", user);
-      document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie =
+        "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       dispatch(logoutSuccess());
     } catch (err) {
       dispatch(logoutFailure());

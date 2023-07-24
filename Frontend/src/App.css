@@ -6,9 +6,9 @@
 }
 
 .carousel {
-  height: 80vh;
+  height: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   position: relative;
   overflow: hidden;
 }
@@ -30,6 +30,7 @@
 
 .carousel-item {
   display: flex;
+  margin-top: 10vh;
 }
 
 .carousel-image img {

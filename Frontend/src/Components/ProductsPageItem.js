@@ -1,7 +1,8 @@
-import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Context from "../Components/Context";
+import { publicRequest } from "../requestMethod";
+
 const ProductsPageItem = ({ cat, sort }) => {
   const context = useContext(Context);
   const {
@@ -15,16 +16,18 @@ const ProductsPageItem = ({ cat, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(
-          cat
-            ? `http://localhost:5000/api/product?category=${cat}`
-            : `http://localhost:5000/api/product`
-        );
+        const res = await publicRequest.get("/product", {
+          params: {
+            category: cat || undefined,
+          },
+        });
         setProducts(res.data);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     };
     getProducts();
-  }, [cat,setProducts]);
+  }, [cat, setProducts]);
 
   useEffect(() => {
     cat &&
@@ -35,12 +38,15 @@ const ProductsPageItem = ({ cat, sort }) => {
           )
         )
       );
-  }, [cat, filters, products,setFilteredProducts]);
+  }, [cat, filters, products, setFilteredProducts]);
 
   useEffect(() => {
     if (sort === "arrival") {
       setFilteredProducts((prev) =>
-        [...prev].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+        [...prev].sort(
+          (a, b) =>
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        )
       );
     } else if (sort === "asc") {
       setFilteredProducts((prev) =>
@@ -51,11 +57,12 @@ const ProductsPageItem = ({ cat, sort }) => {
         [...prev].sort((a, b) => b.price - a.price)
       );
     }
-  }, [sort,setFilteredProducts]);
+  }, [sort, setFilteredProducts]);
   return (
     <>
       {filteredProducts.map((item) => (
-        <Link className="product-link"
+        <Link
+          className="product-link"
           to={`/product/${item._id}`}
           key={item._id}
           style={{ display: "flex", color: "black" }}

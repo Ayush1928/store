@@ -1,14 +1,15 @@
 import { Add, Remove } from "@mui/icons-material";
-import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import { userRequest } from "../requestMethod";
 
 const Cart = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
+  const [updatedProducts, setUpdatedProducts] = useState(cart.products);
   const makeRequest = async () => {
     try {
       console.log("makeRequest Clicked");
@@ -16,23 +17,17 @@ const Cart = () => {
         purpose: "Payment",
         amount: cart.total,
       };
-      const { response } = await axios.post(
-        "http://localhost:5000/api/checkout/payment",
-        paymentData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer {test_a005b58f79b9e00ca8ace4d1287}",
-          },
-        }
-      );
-      navigate(response.paymentUrl);
+
+      const response = await userRequest.post("/checkout/payment", paymentData);
+
+      navigate(response.data.paymentUrl);
       console.log(response.data);
     } catch (error) {
       console.error(error);
     }
   };
-  const handleQuantity = (action, itemId) => {// eslint-disable-next-line
+
+  const handleQuantity = (action, itemId) => {
     const updatedProducts = cart.products.map((item) => {
       if (item._id === itemId) {
         if (action === "inc") {
@@ -43,6 +38,7 @@ const Cart = () => {
       }
       return item;
     });
+    setUpdatedProducts(updatedProducts);
   };
   return (
     <>
@@ -50,10 +46,10 @@ const Cart = () => {
       <h1 className="cart-headline">Bag</h1>
       <div className="cart-container">
         <div className="cart-products">
-          {cart.products.map((item) => (
+          {updatedProducts.map((item) => (
             <div className="cart-product-item" key={item._id}>
               <div className="cart-product-image">
-                <img src={item.img} alt="Product"/>
+                <img src={item.img} alt="Product" />
               </div>
               <div className="cart-product-info">
                 <h3>{item.title}</h3>
