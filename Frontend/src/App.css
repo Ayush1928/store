@@ -30,7 +30,7 @@
 
 .carousel-item {
   display: flex;
-  margin-top: 10vh;
+  margin-top: 9vh;
 }
 
 .carousel-image img {
@@ -686,7 +686,6 @@
   .carousel {
     height: auto;
     width: 100%;
-    padding-top: 9vh;
     align-items: center;
   }
 
