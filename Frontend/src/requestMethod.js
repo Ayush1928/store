@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api/";
+const BASE_URL = "https://clothescornerbackend1-ayushbansal1928.b4a.run/api";
 let TOKEN = null;
 
 const persistedData = JSON.parse(localStorage.getItem("persist:root"));
