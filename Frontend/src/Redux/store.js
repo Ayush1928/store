@@ -11,6 +11,8 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
+  blacklist: ["user.isFetching"],
+  whitelist: ["user"],
 };
 
 const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });

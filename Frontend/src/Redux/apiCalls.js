@@ -13,17 +13,13 @@ export const login = (user) => {
   return async (dispatch) => {
     dispatch(loginStart());
 
-    const timeoutDuration = 10000;
+    const timeoutDuration = 50000;
     let isTimeout = false;
 
-    const handleTimeout = () => {
-      if (!isTimeout) {
-        isTimeout = true;
-        dispatch(loginFailure());
-      }
-    };
-
-    const timeoutId = setTimeout(handleTimeout, timeoutDuration);
+    const timeoutId = setTimeout(() => {
+      isTimeout = true;
+      dispatch(loginFailure());
+    }, timeoutDuration);
 
     try {
       const res = await publicRequest.post("/auth/login", user);
@@ -38,7 +34,9 @@ export const login = (user) => {
         clearTimeout(timeoutId);
         dispatch(loginFailure());
       }
-    }
+     } finally{
+
+     }
   };
 };
 

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logout } from "../Redux/apiCalls";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Container = styled.div`
   height: 8vh;
@@ -153,6 +153,8 @@ const StoreLink = styled(Link)`
 `;
 
 const Div2Item = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 1rem;
   margin-right: 1vw;
   margin-left: 2vw;
@@ -187,18 +189,26 @@ const Navbar = () => {
           <Div2>
             <Link to="/cart">
               <CartButton>
-                <Badge
-                  badgeContent={quantity}
-                  color="primary"
-                  style={{ zIndex: "2" }}
-                >
+                {quantity > 0 ? (
+                  <Badge
+                    badgeContent={quantity}
+                    color="primary"
+                    style={{ zIndex: "2" }}
+                  >
+                    <ShoppingCartOutlinedIcon
+                      style={{ color: "black", textDecoration: "none" }}
+                    />
+                  </Badge>
+                ) : (
                   <ShoppingCartOutlinedIcon
-                    style={{ color: "black", textDecoration: "none" }}
-                  />
-                </Badge>
+                      style={{ color: "black", textDecoration: "none" }}
+                    />
+                )}
               </CartButton>
             </Link>
-            <Div2Item><LogoutIcon onClick={handleLogout}/></Div2Item>
+            <Div2Item>
+              <LogoutIcon onClick={handleLogout} />
+            </Div2Item>
           </Div2>
         </Div1>
       </Wrapper>

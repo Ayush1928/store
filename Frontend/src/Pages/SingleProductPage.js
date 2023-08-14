@@ -43,7 +43,7 @@ const SingleProductPage = () => {
       <Navbar />
       <div className="product-page-container">
         <div className="product-page-image">
-          <img src={product.img} alt="" />
+          <img src={product.img} alt=""/>
         </div>
         <div className="product-page-info" style={{ margin: "1vh 0 3vh" }}>
           <h1>{product.title}</h1>
