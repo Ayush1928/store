@@ -19,11 +19,13 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-app.use(
-  cors({
+  app.use(cors({
     origin: process.env.CORS_ORIGIN || "https://clothescorner.netlify.app",
-  })
-);
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+    optionsSuccessStatus: 204,
+  }));
+  
 
 app.use(express.json());
 app.use("/api/auth", authRoute);
